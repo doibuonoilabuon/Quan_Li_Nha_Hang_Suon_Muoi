@@ -361,3 +361,16 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Local restaurant data, SQL backups and exports
+*.bak
+*.mdf
+*.ldf
+*.ndf
+*.xlsx
+*.zip
+restaurant.json
+restaurant.json.lock
+catalog-*.json
+App.local.config
+.env
+.env.*

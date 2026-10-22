@@ -1,15 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Quan_Li_Nha_Hang_Suon_Muoi</RootNamespace>
+    <AssemblyName>Quan_Li_Nha_Hang_Suon_Muoi</AssemblyName>
+    <Title>Quản lý nhà hàng Sườn Mười</Title>
+    <Product>Quản lý nhà hàng Sườn Mười</Product>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="dũng tuất cổ nhuế\" />
+    <None Update="App.config" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="Database\Schema.sql" />
+    <EmbeddedResource Include="Database\ReadState.sql" />
+    <EmbeddedResource Include="Database\WriteState.sql" />
+    <None Update="Database\CreateDatabase.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+  </ItemGroup>
 </Project>
