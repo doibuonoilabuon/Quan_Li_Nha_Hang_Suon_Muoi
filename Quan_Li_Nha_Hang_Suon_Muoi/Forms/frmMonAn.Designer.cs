@@ -1,0 +1,73 @@
+namespace Quan_Li_Nha_Hang_Suon_Muoi.Forms;
+partial class frmMonAn
+{
+    private FlowLayoutPanel congCu = null!;
+    private TextBox txtTim = null!;
+    private Button btnThem = null!;
+    private Button btnSua = null!;
+    private Button btnXoa = null!;
+    private Button btnLamMoi = null!;
+    private DataGridView grid = null!;
+    private Label lblSoDong = null!;
+    private void InitializeComponent()
+    {
+        congCu = new FlowLayoutPanel();
+        congCu.Name = "congCu";
+        txtTim = new TextBox();
+        txtTim.Name = "txtTim";
+        btnThem = new Button();
+        btnThem.Name = "btnThem";
+        btnSua = new Button();
+        btnSua.Name = "btnSua";
+        btnXoa = new Button();
+        btnXoa.Name = "btnXoa";
+        btnLamMoi = new Button();
+        btnLamMoi.Name = "btnLamMoi";
+        grid = new DataGridView();
+        grid.Name = "grid";
+        lblSoDong = new Label();
+        lblSoDong.Name = "lblSoDong";
+        SuspendLayout();
+        congCu.Dock=DockStyle.Top;
+        congCu.Height=62;
+        congCu.Padding=new Padding(12);
+        txtTim.Width=245;
+        txtTim.PlaceholderText="Tìm kiếm...";
+        btnThem.Text="Thêm";
+        btnSua.Text="Sửa / Xem";
+        btnXoa.Text="Ngừng hoạt động";
+        btnLamMoi.Text="Làm mới";
+        btnThem.Size=new Size(90,34);
+        btnSua.Size=new Size(110,34);
+        btnXoa.Size=new Size(155,34);
+        btnLamMoi.Size=new Size(100,34);
+        grid.Dock=DockStyle.Fill;
+        grid.ReadOnly=true;
+        grid.AllowUserToAddRows=false;
+        grid.AllowUserToDeleteRows=false;
+        grid.MultiSelect=false;
+        grid.SelectionMode=DataGridViewSelectionMode.FullRowSelect;
+        grid.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+        grid.RowHeadersVisible=false;
+        grid.BackgroundColor=Color.White;
+        grid.RowTemplate.Height=32;
+        lblSoDong.Dock=DockStyle.Bottom;
+        lblSoDong.Height=36;
+        lblSoDong.Padding=new Padding(12,8,0,0);
+        congCu.Controls.AddRange(new Control[] { txtTim,btnThem,btnSua,btnXoa,btnLamMoi });
+
+        Controls.Add(grid);
+        Controls.Add(lblSoDong);
+        Controls.Add(congCu);
+        AutoScaleMode = AutoScaleMode.Dpi;
+        Font = new Font("Segoe UI",10F);
+        BackColor = Color.FromArgb(255,247,237);
+        ClientSize = new Size(1100,700);
+        MinimumSize = new Size(950,620);
+        StartPosition = FormStartPosition.CenterParent;
+        Text = "Món ăn";
+        Name = "frmMonAn";
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

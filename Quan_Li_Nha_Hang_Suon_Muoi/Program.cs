@@ -1,8 +1,7 @@
-using System;
-using System.Windows.Forms;
-using Quan_Li_Nha_Hang_Suon_Muoi.Forms.Auth;
-
+using Quan_Li_Nha_Hang_Suon_Muoi.DAL;
+using Quan_Li_Nha_Hang_Suon_Muoi.Forms;
 namespace Quan_Li_Nha_Hang_Suon_Muoi;
+
 internal static class Program
 {
     [STAThread]
@@ -11,19 +10,13 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         try
         {
-            _ = Services.RestaurantStore.Current;
+            KhoiTaoDatabase.ThucHien();
+            Application.Run(new frmDangNhap());
         }
         catch (Exception ex)
         {
-            MessageBox.Show(
-                "Không mở được cơ sở dữ liệu SQL Server. Hãy kiểm tra SQL Server và App.config.\n" + ex.Message,
-                "SƯỜN MƯỜI",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            );
-            return;
+            MessageBox.Show("Không mở được ứng dụng. Kiểm tra kết nối trong DAL/ProcessDatabase.cs.\n" + ex.Message,
+                "Sườn Mười", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        Application.Run(new frmLogin());
     }
 }

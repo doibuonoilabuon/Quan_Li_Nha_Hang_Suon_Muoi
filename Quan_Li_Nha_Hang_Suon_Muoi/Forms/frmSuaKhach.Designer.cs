@@ -1,0 +1,70 @@
+namespace Quan_Li_Nha_Hang_Suon_Muoi.Forms;
+partial class frmSuaKhach
+{
+    private Label lblTen = null!;
+    private TextBox txtTen = null!;
+    private Label lblSdt = null!;
+    private TextBox txtSdt = null!;
+    private Label lblEmail = null!;
+    private TextBox txtEmail = null!;
+    private Button btnLuu = null!;
+    private Button btnHuy = null!;
+    private void InitializeComponent()
+    {
+        lblTen = new Label();
+        lblTen.Name = "lblTen";
+        txtTen = new TextBox();
+        txtTen.Name = "txtTen";
+        lblSdt = new Label();
+        lblSdt.Name = "lblSdt";
+        txtSdt = new TextBox();
+        txtSdt.Name = "txtSdt";
+        lblEmail = new Label();
+        lblEmail.Name = "lblEmail";
+        txtEmail = new TextBox();
+        txtEmail.Name = "txtEmail";
+        btnLuu = new Button();
+        btnLuu.Name = "btnLuu";
+        btnHuy = new Button();
+        btnHuy.Name = "btnHuy";
+        SuspendLayout();
+        lblTen.Text="Họ tên";
+        lblTen.Location = new Point(30, 25);
+        lblTen.Size = new Size(400, 25);
+        txtTen.Location = new Point(30, 55);
+        txtTen.Size = new Size(420, 30);
+        txtTen.MaxLength=256;
+        lblSdt.Text="Số điện thoại";
+        lblSdt.Location = new Point(30, 105);
+        lblSdt.Size = new Size(400, 25);
+        txtSdt.Location = new Point(30, 135);
+        txtSdt.Size = new Size(420, 30);
+        txtSdt.MaxLength=64;
+        lblEmail.Text="Email";
+        lblEmail.Location = new Point(30, 185);
+        lblEmail.Size = new Size(400, 25);
+        txtEmail.Location = new Point(30, 215);
+        txtEmail.Size = new Size(420, 30);
+        txtEmail.MaxLength=256;
+        btnLuu.Text="Lưu khách hàng";
+        btnLuu.Location = new Point(130, 290);
+        btnLuu.Size = new Size(160, 40);
+        btnHuy.Text="Đóng";
+        btnHuy.Location = new Point(310, 290);
+        btnHuy.Size = new Size(140, 40);
+        btnHuy.DialogResult=DialogResult.Cancel;
+        AcceptButton=btnLuu;
+        CancelButton=btnHuy;
+        Controls.AddRange(new Control[] { lblTen,txtTen,lblSdt,txtSdt,lblEmail,txtEmail,btnLuu,btnHuy });
+        AutoScaleMode = AutoScaleMode.Dpi;
+        Font = new Font("Segoe UI",10F);
+        BackColor = Color.FromArgb(255,247,237);
+        ClientSize = new Size(500,390);
+        MinimumSize = new Size(500,390);
+        StartPosition = FormStartPosition.CenterParent;
+        Text = "Khách hàng - Thêm / Sửa";
+        Name = "frmSuaKhach";
+        ResumeLayout(false);
+        PerformLayout();
+    }
+}

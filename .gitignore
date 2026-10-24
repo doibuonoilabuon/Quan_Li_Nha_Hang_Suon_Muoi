@@ -374,3 +374,5 @@ catalog-*.json
 App.local.config
 .env
 .env.*
+
+.backups/

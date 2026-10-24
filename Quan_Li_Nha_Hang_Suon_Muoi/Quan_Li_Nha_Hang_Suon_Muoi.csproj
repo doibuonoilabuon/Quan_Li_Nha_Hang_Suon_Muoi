@@ -2,22 +2,19 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <RootNamespace>Quan_Li_Nha_Hang_Suon_Muoi</RootNamespace>
     <AssemblyName>Quan_Li_Nha_Hang_Suon_Muoi</AssemblyName>
-    <Title>Quản lý nhà hàng Sườn Mười</Title>
-    <Product>Quản lý nhà hàng Sườn Mười</Product>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="App.config" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="Database\Schema.sql" />
-    <EmbeddedResource Include="Database\ReadState.sql" />
-    <EmbeddedResource Include="Database\WriteState.sql" />
-    <None Update="Database\CreateDatabase.sql" CopyToOutputDirectory="PreserveNewest" />
+    <None Remove="DOC_MA_NGUON.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <EmbeddedResource Include="Database\TaoBang.sql" LogicalName="Quan_Li_Nha_Hang_Suon_Muoi.Database.TaoBang.sql" />
+    <None Update="Database\TaoBang.sql" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="AnhMonAn\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

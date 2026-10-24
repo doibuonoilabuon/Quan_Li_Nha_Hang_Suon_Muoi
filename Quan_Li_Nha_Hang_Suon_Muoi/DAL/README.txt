@@ -1,1 +1,0 @@
-AppDatabase.cs: kết nối SQL Server, nhập dữ liệu cũ một lần, transaction nghiệp vụ, danh mục, xác thực PBKDF2 và xuất bản sao dữ liệu. CatalogSchema.cs khai báo các bảng danh mục được phép truy cập. Các script nằm trong Database/.
