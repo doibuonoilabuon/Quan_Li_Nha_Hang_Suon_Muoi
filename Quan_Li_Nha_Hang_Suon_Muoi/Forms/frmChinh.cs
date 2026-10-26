@@ -8,7 +8,7 @@ public partial class frmChinh : Form
     public frmChinh()
     {
         InitializeComponent();
-        // Designer chỉ dựng giao diện, không mở form con hoặc kết nối database.
+     
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             return;
         lblNguoi.Text = "SƯỜN MƯỜI | " + PhienDangNhap.HienTai?.HoTen;

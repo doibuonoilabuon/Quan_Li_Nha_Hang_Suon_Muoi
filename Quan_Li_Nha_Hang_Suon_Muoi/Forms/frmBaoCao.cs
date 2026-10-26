@@ -1,18 +1,21 @@
+using Quan_Li_Nha_Hang_Suon_Muoi.Models;
+using Microsoft.Data.SqlClient;
 using System.ComponentModel;
 using System.Data;
-using Quan_Li_Nha_Hang_Suon_Muoi.DAL;
+using Quan_Li_Nha_Hang_Suon_Muoi.Database;
 using Quan_Li_Nha_Hang_Suon_Muoi.Services;
 namespace Quan_Li_Nha_Hang_Suon_Muoi.Forms;
 
 public partial class frmBaoCao : Form
 {
+    private readonly DBProcess db = new();
     private DataTable doanhThu = new(), monBan = new();
     private DateTime tuDaTai, denDaTai;
     private string kyDaTai = "";
     public frmBaoCao()
     {
         InitializeComponent();
-        // Designer chỉ dựng giao diện, không mở form con hoặc kết nối database.
+        
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             return;
         dtTu.Value = new DateTime(DateTime.Today.Year, 1, 1);
@@ -32,10 +35,9 @@ public partial class frmBaoCao : Form
         {
             if (dtTu.Value.Date > dtDen.Value.Date)
                 throw new InvalidOperationException("Từ ngày phải nhỏ hơn hoặc bằng đến ngày.");
-            var dal = new BaoCaoDAL();
-            // Chỉ thay báo cáo khi cả hai truy vấn đều thành công.
-            var doanhThuMoi = dal.DoanhThu(dtTu.Value, dtDen.Value, cboKy.SelectedIndex == 1);
-            var monBanMoi = dal.MonBanChay(dtTu.Value, dtDen.Value);
+            
+            var doanhThuMoi = DocDoanhThu(dtTu.Value, dtDen.Value, cboKy.SelectedIndex == 1);
+            var monBanMoi = DocMonBanChay(dtTu.Value, dtDen.Value);
             doanhThu = doanhThuMoi;
             monBan = monBanMoi;
             gridDoanhThu.DataSource = doanhThu;
@@ -106,5 +108,31 @@ public partial class frmBaoCao : Form
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    private DataTable DocDoanhThu(DateTime tuNgay, DateTime denNgay, bool theoThang)
+    {
+        PhienDangNhap.KiemTraDangNhap();
+        string nhom = theoThang ? "CONVERT(char(7),NgayThanhToan,120)" : "CONVERT(char(10),NgayThanhToan,120)";
+        return db.DataReader(
+            "SELECT " + nhom + " AS Ky,COUNT(*) AS SoHoaDon,SUM(TongTien) AS TongTien,SUM(TienGiam) AS TienGiam,SUM(ThanhTien) AS DoanhThu " +
+            "FROM dbo.HoaDon WHERE TrangThai=N'Đã thanh toán' AND NgayThanhToan>=@tu AND NgayThanhToan<@den " +
+            "GROUP BY " + nhom + " ORDER BY " + nhom,
+            new SqlParameter("@tu", tuNgay.Date), new SqlParameter("@den", denNgay.Date.AddDays(1)));
+    }
+    private DataTable DocMonBanChay(DateTime tuNgay, DateTime denNgay)
+    {
+        PhienDangNhap.KiemTraDangNhap();
+        return db.DataReader(
+            "SELECT c.TenMon,SUM(c.SoLuong) AS SoLuong,SUM(c.ThanhTien) AS TienMon " +
+            "FROM dbo.ChiTietHoaDon c JOIN dbo.HoaDon h ON h.MaHoaDon=c.MaHoaDon " +
+            "WHERE h.TrangThai=N'Đã thanh toán' AND h.NgayThanhToan>=@tu AND h.NgayThanhToan<@den " +
+            "GROUP BY c.MaMon,c.TenMon ORDER BY SoLuong DESC,TienMon DESC",
+            new SqlParameter("@tu", tuNgay.Date), new SqlParameter("@den", denNgay.Date.AddDays(1)));
+    }
+
+    private void btnExcel_Click_1(object sender, EventArgs e)
+    {
+
     }
 }

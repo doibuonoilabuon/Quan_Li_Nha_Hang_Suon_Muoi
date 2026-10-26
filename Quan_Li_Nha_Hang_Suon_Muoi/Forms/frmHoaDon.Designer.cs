@@ -10,6 +10,7 @@ partial class frmHoaDon
     private DataGridView grid = null!;
     private Label lblSoDong = null!;
     private Button btnIn = null!;
+    private Button btnExcel = null!;
     private void InitializeComponent()
     {
         congCu = new FlowLayoutPanel();
@@ -29,10 +30,12 @@ partial class frmHoaDon
         lblSoDong = new Label();
         lblSoDong.Name = "lblSoDong";
         btnIn = new Button();
+        btnExcel = new Button();
+        btnExcel.Name = "btnExcel";
         btnIn.Name = "btnIn";
         SuspendLayout();
         congCu.Dock=DockStyle.Top;
-        congCu.Height=62;
+        congCu.Height=105;
         congCu.Padding=new Padding(12);
         txtTim.Width=245;
         txtTim.PlaceholderText="Tìm kiếm...";
@@ -61,6 +64,9 @@ partial class frmHoaDon
         btnIn.Text="In hóa đơn";
         btnIn.Size=new Size(120,34);
         congCu.Controls.Add(btnIn);
+        btnExcel.Text = "Xuất Excel";
+        btnExcel.Size = new Size(115, 34);
+        congCu.Controls.Add(btnExcel);
         btnXoa.Text="Hủy hóa đơn";
 
         Controls.Add(grid);

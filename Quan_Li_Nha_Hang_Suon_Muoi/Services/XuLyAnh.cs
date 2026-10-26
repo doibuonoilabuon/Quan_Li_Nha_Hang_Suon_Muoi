@@ -2,7 +2,7 @@ namespace Quan_Li_Nha_Hang_Suon_Muoi.Services;
 
 public static class XuLyAnh
 {
-    // Giữ thư mục ảnh cũ để ảnh đã có vẫn mở được.
+   
     public static string ThuMucDuLieu
     {
         get;
@@ -10,8 +10,6 @@ public static class XuLyAnh
     } =
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LuaMoc", "Data");
 
-    // Khi chạy trong Visual Studio, tìm thư mục project để chọn ảnh từ AnhMonAn.
-    // Khi phát hành ứng dụng, dùng AnhMonAn cạnh file chạy.
     public static string LayThuMucChonAnh()
     {
         DirectoryInfo? thuMuc = new DirectoryInfo(AppContext.BaseDirectory);
@@ -40,7 +38,7 @@ public static class XuLyAnh
         using var stream = File.OpenRead(duongDan);
         using var image = Image.FromStream(stream);
         return new Bitmap(image);
-        // Tránh khóa file ảnh sau khi xem.
+        
     }
 
     public static string LuuAnh(string duongDanGoc)

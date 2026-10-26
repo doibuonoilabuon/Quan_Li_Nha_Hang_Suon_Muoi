@@ -1,11 +1,13 @@
+using Microsoft.Data.SqlClient;
+using System.Data;
 using System.ComponentModel;
-using Quan_Li_Nha_Hang_Suon_Muoi.DAL;
+using Quan_Li_Nha_Hang_Suon_Muoi.Database;
 using Quan_Li_Nha_Hang_Suon_Muoi.Models;
 namespace Quan_Li_Nha_Hang_Suon_Muoi.Forms;
 
 public partial class frmKhachHang : Form
 {
-    private readonly KhachHangDAL dal = new();
+    private readonly DBProcess db = new();
     public frmKhachHang()
     {
         InitializeComponent();
@@ -26,7 +28,7 @@ public partial class frmKhachHang : Form
             return;
         try
         {
-            grid.DataSource = dal.DanhSach(txtTim.Text);
+            grid.DataSource = DocDanhSachKhach(txtTim.Text);
             grid.Columns["MaKhach"]!.HeaderText = "Mã khách";
             grid.Columns["HoTen"]!.HeaderText = "Họ tên";
             grid.Columns["DienThoai"]!.HeaderText = "Điện thoại";
@@ -63,7 +65,7 @@ public partial class frmKhachHang : Form
             return;
         try
         {
-            dal.NgungHoatDong(Convert.ToString(grid.CurrentRow.Cells["MaKhach"].Value)!);
+            NgungHoatDongKhach(Convert.ToString(grid.CurrentRow.Cells["MaKhach"].Value)!);
             TaiDanhSach();
         }
         catch (Exception ex)
@@ -75,5 +77,20 @@ public partial class frmKhachHang : Form
     private void btnThem_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private DataTable DocDanhSachKhach(string tuKhoa = "", bool chiHoatDong = false)
+    {
+        PhienDangNhap.KiemTraDangNhap();
+        return db.DataReader(
+            "SELECT Code AS MaKhach,Name AS HoTen,Phone AS DienThoai,Email,Status AS TrangThai FROM dbo.Customers " +
+            "WHERE (Name LIKE @tim OR Phone LIKE @tim OR Code LIKE @tim)" +
+            (chiHoatDong ? " AND Status=N'Hoạt động'" : "") + " ORDER BY Name",
+            new SqlParameter("@tim", "%" + tuKhoa.Trim() + "%"));
+    }
+    private void NgungHoatDongKhach(string maKhach)
+    {
+        PhienDangNhap.KiemTraQuyenQuanTri();
+        db.DataChange("UPDATE dbo.Customers SET Status=N'Ngừng hoạt động' WHERE Code=@ma", new SqlParameter("@ma", maKhach));
     }
 }

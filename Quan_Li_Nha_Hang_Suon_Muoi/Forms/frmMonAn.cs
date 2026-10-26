@@ -1,12 +1,14 @@
+using Microsoft.Data.SqlClient;
+using System.Data;
 using System.ComponentModel;
-using Quan_Li_Nha_Hang_Suon_Muoi.DAL;
+using Quan_Li_Nha_Hang_Suon_Muoi.Database;
 using Quan_Li_Nha_Hang_Suon_Muoi.Models;
 using Quan_Li_Nha_Hang_Suon_Muoi.Services;
 namespace Quan_Li_Nha_Hang_Suon_Muoi.Forms;
 
 public partial class frmMonAn : Form
 {
-    private readonly MonAnDAL dal = new();
+    private readonly DBProcess db = new();
     public frmMonAn()
     {
         InitializeComponent();
@@ -28,7 +30,7 @@ public partial class frmMonAn : Form
             return;
         try
         {
-            grid.DataSource = dal.DanhSach(txtTim.Text);
+            grid.DataSource = DocDanhSachMon(txtTim.Text);
             grid.Columns["MaMon"]!.Visible = false;
             grid.Columns["Anh"]!.Visible = false;
             grid.Columns["TenMon"]!.HeaderText = "Tên món";
@@ -113,12 +115,27 @@ public partial class frmMonAn : Form
             return;
         try
         {
-            dal.NgungBan(Convert.ToString(grid.CurrentRow.Cells["MaMon"].Value)!);
+            NgungBanMon(Convert.ToString(grid.CurrentRow.Cells["MaMon"].Value)!);
             TaiDanhSach();
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    private DataTable DocDanhSachMon(string tuKhoa = "")
+    {
+        PhienDangNhap.KiemTraDangNhap();
+        return db.DataReader(
+            "SELECT FoodId AS MaMon,Name AS TenMon,Category AS DanhMuc,Price AS DonGia,IsAvailable AS DangBan,ImageUrl AS Anh " +
+            "FROM dbo.Foods WHERE Name LIKE @tim OR Category LIKE @tim ORDER BY Name",
+            new SqlParameter("@tim", "%" + tuKhoa.Trim() + "%"));
+    }
+    private void NgungBanMon(string maMon)
+    {
+        PhienDangNhap.KiemTraQuyenQuanTri();
+      
+        db.DataChange("UPDATE dbo.Foods SET IsAvailable=0 WHERE FoodId=@ma", new SqlParameter("@ma", maMon));
     }
 }

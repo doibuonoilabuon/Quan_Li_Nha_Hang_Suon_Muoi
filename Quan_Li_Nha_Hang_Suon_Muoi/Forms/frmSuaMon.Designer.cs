@@ -16,84 +16,155 @@ partial class frmSuaMon
     private void InitializeComponent()
     {
         lblTen = new Label();
-        lblTen.Name = "lblTen";
         txtTen = new TextBox();
-        txtTen.Name = "txtTen";
         lblDanhMuc = new Label();
-        lblDanhMuc.Name = "lblDanhMuc";
         txtDanhMuc = new TextBox();
-        txtDanhMuc.Name = "txtDanhMuc";
         lblGia = new Label();
-        lblGia.Name = "lblGia";
         numGia = new NumericUpDown();
-        numGia.Name = "numGia";
         chkDangBan = new CheckBox();
-        chkDangBan.Name = "chkDangBan";
         picAnh = new PictureBox();
-        picAnh.Name = "picAnh";
         btnChonAnh = new Button();
-        btnChonAnh.Name = "btnChonAnh";
         btnXoaAnh = new Button();
-        btnXoaAnh.Name = "btnXoaAnh";
         btnLuu = new Button();
-        btnLuu.Name = "btnLuu";
         btnHuy = new Button();
-        btnHuy.Name = "btnHuy";
+        ((System.ComponentModel.ISupportInitialize)numGia).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)picAnh).BeginInit();
         SuspendLayout();
-        lblTen.Text="Tên món";
+        // 
+        // lblTen
+        // 
         lblTen.Location = new Point(25, 30);
+        lblTen.Name = "lblTen";
         lblTen.Size = new Size(300, 25);
+        lblTen.TabIndex = 0;
+        lblTen.Text = "Tên món";
+        // 
+        // txtTen
+        // 
         txtTen.Location = new Point(25, 60);
+        txtTen.MaxLength = 256;
+        txtTen.Name = "txtTen";
         txtTen.Size = new Size(320, 30);
-        txtTen.MaxLength=256;
-        lblDanhMuc.Text="Danh mục";
+        txtTen.TabIndex = 1;
+        // 
+        // lblDanhMuc
+        // 
         lblDanhMuc.Location = new Point(25, 110);
+        lblDanhMuc.Name = "lblDanhMuc";
         lblDanhMuc.Size = new Size(300, 25);
+        lblDanhMuc.TabIndex = 2;
+        lblDanhMuc.Text = "Danh mục";
+        // 
+        // txtDanhMuc
+        // 
         txtDanhMuc.Location = new Point(25, 140);
+        txtDanhMuc.MaxLength = 128;
+        txtDanhMuc.Name = "txtDanhMuc";
         txtDanhMuc.Size = new Size(320, 30);
-        txtDanhMuc.MaxLength=128;
-        lblGia.Text="Đơn giá (đồng)";
+        txtDanhMuc.TabIndex = 3;
+        // 
+        // lblGia
+        // 
         lblGia.Location = new Point(25, 190);
+        lblGia.Name = "lblGia";
         lblGia.Size = new Size(300, 25);
+        lblGia.TabIndex = 4;
+        lblGia.Text = "Đơn giá (đồng)";
+        // 
+        // numGia
+        // 
         numGia.Location = new Point(25, 220);
-        numGia.Size = new Size(320, 32);
-        numGia.Minimum=1;
-        numGia.Maximum=1000000000;
-        numGia.ThousandsSeparator=true;
-        chkDangBan.Text="Đang bán";
+        numGia.Maximum = new decimal(new int[] { 1000000000, 0, 0, 0 });
+        numGia.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        numGia.Name = "numGia";
+        numGia.Size = new Size(320, 30);
+        numGia.TabIndex = 5;
+        numGia.ThousandsSeparator = true;
+        numGia.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        // 
+        // chkDangBan
+        // 
         chkDangBan.Location = new Point(25, 285);
+        chkDangBan.Name = "chkDangBan";
         chkDangBan.Size = new Size(300, 30);
+        chkDangBan.TabIndex = 6;
+        chkDangBan.Text = "Đang bán";
+        // 
+        // picAnh
+        // 
+        picAnh.BackColor = Color.White;
+        picAnh.BorderStyle = BorderStyle.FixedSingle;
         picAnh.Location = new Point(380, 30);
+        picAnh.Name = "picAnh";
         picAnh.Size = new Size(330, 300);
-        picAnh.BorderStyle=BorderStyle.FixedSingle;
-        picAnh.SizeMode=PictureBoxSizeMode.Zoom;
-        picAnh.BackColor=Color.White;
-        btnChonAnh.Text="Chọn ảnh...";
+        picAnh.SizeMode = PictureBoxSizeMode.Zoom;
+        picAnh.TabIndex = 7;
+        picAnh.TabStop = false;
+        picAnh.Click += picAnh_Click;
+        // 
+        // btnChonAnh
+        // 
         btnChonAnh.Location = new Point(380, 350);
+        btnChonAnh.Name = "btnChonAnh";
         btnChonAnh.Size = new Size(155, 38);
-        btnXoaAnh.Text="Bỏ ảnh";
+        btnChonAnh.TabIndex = 8;
+        btnChonAnh.Text = "Chọn ảnh...";
+        // 
+        // btnXoaAnh
+        // 
         btnXoaAnh.Location = new Point(550, 350);
+        btnXoaAnh.Name = "btnXoaAnh";
         btnXoaAnh.Size = new Size(155, 38);
-        btnLuu.Text="Lưu món";
+        btnXoaAnh.TabIndex = 9;
+        btnXoaAnh.Text = "Bỏ ảnh";
+        // 
+        // btnLuu
+        // 
+        btnLuu.BackColor = Color.FromArgb(168, 63, 43);
+        btnLuu.ForeColor = Color.White;
         btnLuu.Location = new Point(380, 440);
+        btnLuu.Name = "btnLuu";
         btnLuu.Size = new Size(155, 42);
-        btnLuu.BackColor=Color.FromArgb(168,63,43);
-        btnLuu.ForeColor=Color.White;
-        btnHuy.Text="Đóng";
+        btnLuu.TabIndex = 10;
+        btnLuu.Text = "Lưu món";
+        btnLuu.UseVisualStyleBackColor = false;
+        // 
+        // btnHuy
+        // 
+        btnHuy.DialogResult = DialogResult.Cancel;
         btnHuy.Location = new Point(550, 440);
+        btnHuy.Name = "btnHuy";
         btnHuy.Size = new Size(155, 42);
-        btnHuy.DialogResult=DialogResult.Cancel;
-        AcceptButton=btnLuu;
-        CancelButton=btnHuy;
-        Controls.AddRange(new Control[] { lblTen,txtTen,lblDanhMuc,txtDanhMuc,lblGia,numGia,chkDangBan,picAnh,btnChonAnh,btnXoaAnh,btnLuu,btnHuy });
+        btnHuy.TabIndex = 11;
+        btnHuy.Text = "Đóng";
+        // 
+        // frmSuaMon
+        // 
+        AcceptButton = btnLuu;
+        AutoScaleDimensions = new SizeF(120F, 120F);
         AutoScaleMode = AutoScaleMode.Dpi;
-        Font = new Font("Segoe UI",10F);
-        BackColor = Color.FromArgb(255,247,237);
-        ClientSize = new Size(760,540);
-        MinimumSize = new Size(760,540);
+        BackColor = Color.FromArgb(255, 247, 237);
+        CancelButton = btnHuy;
+        ClientSize = new Size(760, 540);
+        Controls.Add(lblTen);
+        Controls.Add(txtTen);
+        Controls.Add(lblDanhMuc);
+        Controls.Add(txtDanhMuc);
+        Controls.Add(lblGia);
+        Controls.Add(numGia);
+        Controls.Add(chkDangBan);
+        Controls.Add(picAnh);
+        Controls.Add(btnChonAnh);
+        Controls.Add(btnXoaAnh);
+        Controls.Add(btnLuu);
+        Controls.Add(btnHuy);
+        Font = new Font("Segoe UI", 10F);
+        MinimumSize = new Size(760, 540);
+        Name = "frmSuaMon";
         StartPosition = FormStartPosition.CenterParent;
         Text = "Món ăn - Thêm / Sửa ảnh";
-        Name = "frmSuaMon";
+        ((System.ComponentModel.ISupportInitialize)numGia).EndInit();
+        ((System.ComponentModel.ISupportInitialize)picAnh).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
